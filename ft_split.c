@@ -1,64 +1,68 @@
-//#include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 size_t	countwords(char const *s, char c)
 {
 	size_t	i;
-	size_t	sw;
+	size_t	state;
 	size_t	result;
 
 	i = 0;
-	sw = 1;
+	state = 1;
 	result = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
-			sw = 1;
-		else if (s[i] != c && sw == 1)
+			state = 1;
+		else if (s[i] != c && state == 1)
 		{
 			result++;
-			sw = 0;
+			state = 0;
 		}
 		i++;
 	}
 	return (result);
 }
 
-int	auxmem(char **tab, char const *s, char c)
+size_t	auxstrmem(char const *s, char c, size_t *j)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[*j] != c && s[*j])
+	{
+		(*j)++;
+		len++;
+	}
+	return (len);
+}
+
+int	strmem(char **tab, char const *s, char c, size_t words)
 {
 	size_t	i;
 	size_t	j;
 	size_t	k;
-	size_t	let;
 
 	i = 0;
 	j = 0;
 	k = 0;
-	let = 0;
-	while (tab[i])
+	while (i < words)
 	{
 		while (s[j] == c)
 			j++;
-		while (s[j] != c)
-		{
-			j++;
-			let++;
-		}
-		tab[i] = (char *)malloc(let);
+		tab[i] = (char *)malloc(auxstrmem(s, c, &j) + 1);
 		if (!tab[i])
 		{
 			while (k < i)
 				free(tab[k++]);
 			return (-1);		
 		}
-		let = 0;
 		i++;
 	}
+	tab[i] = NULL;
 	return (0);
 }
 
-void	auxfill(char **tab, char const *s, char c)
+void	strfill(char **tab, char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -71,13 +75,12 @@ void	auxfill(char **tab, char const *s, char c)
 	{
 		while (s[j] == c)
 			j++;
-		while (s[j] != c)
+		while (s[j] != c && s[j])
 			tab[i][k++] = s[j++];
 		tab[i][k] = '\0';
 		i++;
 		k = 0;
 	}
-	tab[i] = NULL;
 }
 
 char	**ft_split(char const *s, char c)
@@ -95,28 +98,13 @@ char	**ft_split(char const *s, char c)
 	}
 	words = countwords(s, c);
 	tab = (char **)malloc((words + 1) * sizeof(char *));
-	if (auxmem(tab, s, c) == -1)
+	if (tab == NULL)
+		return (NULL);
+	if (strmem(tab, s, c, words) == -1)
 	{
 		free(tab);
 		return (NULL);
 	}
-	auxfill(tab, s, c);
+	strfill(tab, s, c);
 	return (tab);
-}
-
-int main() {
-    char const *s = "hola-que-tal-estas";
-    char c = '-';
-    char **res = ft_split(s, c);
-    size_t i = 0;
-	
-    if (res) {
-        while (res[i]) {
-            printf("%s\n", res[i]);
-            free(res[i]); 
-            i++;
-        }
-        free(res); 
-    }
-    return 0;
 }
