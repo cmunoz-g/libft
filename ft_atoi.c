@@ -22,3 +22,5 @@ int	ft_atoi(const char *nptr)
 	}
 	return (res * neg);
 }
+
+//testear int_max
