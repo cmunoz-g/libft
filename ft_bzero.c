@@ -2,7 +2,7 @@
 
 void    ft_bzero(void *s, size_t n)
 {
-    unsigned char *cpy;
+    unsigned char   *cpy;
 
     cpy = s;
     while (n > 0)

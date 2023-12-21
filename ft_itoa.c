@@ -2,7 +2,7 @@
 
 size_t digitcount(long n)
 {
-    size_t digits = 0;
+    size_t  digits = 0;
     if (n <= 0)
     {
         digits++;
@@ -16,17 +16,17 @@ size_t digitcount(long n)
     return (digits);
 }
 
-char *ft_itoa(int n)
+char    *ft_itoa(int n)
 {
-    long nlong;
-    size_t digits;
-    char *str;
+    long    nlong;
+    size_t  digits;
+    char    *str;
 
-	nlong = n;
-	digits = digitcount(nlong);
-	str = (char *)malloc(digits + 1);
+    nlong = n;
+    digits = digitcount(nlong);
+    str = (char *)malloc(digits + 1);
     if (str == NULL)
-    	return NULL;
+        return NULL;
     str[digits] = '\0';
     if (nlong < 0)
     {
