@@ -58,22 +58,21 @@ $(NAME): $(OBJ) $(INCLUDE)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
 
-all: 
-	$(NAME)
+all: $(NAME)
 
 bonus: $(OBJ) $(OBJB)
 	ar -rcs $(NAME) $(OBJ) $(OBJB)
 	ranlib $(NAME)
 
-clean: 
+clean:
 	rm -rf $(OBJ) $(OBJB)
 
-fclean:
-	clean
-	rm -rf $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re:
-	fclean all
+re: fclean all
+
+rebonus: fclean all bonus
 
 .PHONY: all bonus clean fclean re
 
