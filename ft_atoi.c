@@ -1,5 +1,13 @@
 #include "libft.h"
 
+int	ft_isspace(char c)
+{
+	if (c == 32 || (c >= 9 && c <= 13))
+		return (1);
+	else
+		return (0);
+}
+
 int	ft_atoi(const char *nptr)
 {
 	int	neg;
@@ -7,7 +15,7 @@ int	ft_atoi(const char *nptr)
 
 	neg = 1;
 	res = 0;
-	while (*nptr == 32)
+	while (ft_isspace(*nptr))
 		nptr++;
 	if (*nptr == 43 || *nptr == 45)
 	{
@@ -22,5 +30,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (res * neg);
 }
-
-//testear int_max

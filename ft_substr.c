@@ -7,7 +7,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	else if (s[start] == '\0')
+	else if (ft_strlen(s) < start)
 	{
 		res = (char *)malloc(1);
 		if (res == NULL)
