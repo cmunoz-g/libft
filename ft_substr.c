@@ -1,6 +1,6 @@
 #include "libft.h"
 
-/*char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*res;
 	size_t	size;
@@ -22,42 +22,14 @@
 		res = (char *)malloc(len + 1);
 	if (res == NULL)
 		return (NULL);
-	ft_strlcpy(res, (s + start), (len + 1));
+	ft_strlcpy(res, (s + start), (len));
 	return (res);
-}*/
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char		*str;
-	size_t		i;
-	size_t		aux;
-
-	if (!s)
-		return (NULL);
-	i = 0;
-	aux = ft_strlen(s);
-	if (!*s || start > ft_strlen(s))
-		return (ft_strdup(""));
-	if (len > ft_strlen(s))
-		len = ft_strlen(s);
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	while (len != 0 && start <= aux)
-	{
-		((char *)str)[i] = ((char *)s)[start];
-		start++;
-		i++;
-		len--;
-	}
-	((char *)str)[i] = '\0';
-	return (str);
 }
 
-/*int main()
+int main()
 {
 	char *result = ft_substr("hola", 0, SIZE_MAX);
 	if (result)
 		printf("%s\n",result);
 	return 0;
-}*/
+}
