@@ -54,10 +54,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (str);
 }
 
-int main()
+/*int main()
 {
 	char *result = ft_substr("hola", 0, SIZE_MAX);
 	if (result)
 		printf("%s\n",result);
 	return 0;
-}
+}*/
