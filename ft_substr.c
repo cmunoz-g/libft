@@ -16,7 +16,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (res);
 	}
 	size = ft_strlen(s + start);
-	if (size < len)
+	if (len >= SIZE_MAX - start || size < len)
 		res = (char *)malloc(size + 1);
 	else
 		res = (char *)malloc(len + 1);

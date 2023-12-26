@@ -2,7 +2,7 @@
 
 char    *ft_strchr(const char *str, int c)
 {
-    while (str && *str != '\0')
+    while (*str != '\0')
     {
         if (*str == c)
             return ((char *)str);
@@ -12,3 +12,5 @@ char    *ft_strchr(const char *str, int c)
         return ((char *)str);
     return (0);
 }
+
+// la funcion da segfault con NULL, al igual que la funcion original

@@ -7,8 +7,8 @@ char	*ft_strdup(const char *s)
 
 	size = ft_strlen(s) + 1;
 	cpy = (char *)malloc(size);
+	if (!cpy)
+		return (NULL);
 	ft_strlcpy(cpy, s, size);
 	return (cpy);
 }
-
-//tiene buena pinta pero no la he probado, hay que volver a revisar cuando se compile todo junto
