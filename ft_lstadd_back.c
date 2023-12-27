@@ -4,8 +4,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*it;
 
-	if (new)
+	if (new && lst)
 	{
+		new->next = NULL;
 		if (!(*lst))
 			*lst = new;
 		else
@@ -14,7 +15,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			while (it->next)
 				it = it->next;
 			it->next = new;
-			new->next = NULL;
 		}
 	}
 }
