@@ -2,13 +2,16 @@
 
 char    *ft_strchr(const char *str, int c)
 {
+    char    ch;
+
+    ch = (char)c;
     while (*str != '\0')
     {
-        if (*str == c)
+        if (*str == ch)
             return ((char *)str);
         str++;
     }
-    if (c == '\0')
+    if (ch == '\0')
         return ((char *)str);
     return (0);
 }
