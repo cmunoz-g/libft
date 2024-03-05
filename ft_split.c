@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmunoz-g <cmunoz-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 12:10:15 by cmunoz-g          #+#    #+#             */
+/*   Updated: 2024/01/09 13:19:09 by cmunoz-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 size_t	countwords(char const *s, char c)
@@ -54,7 +66,7 @@ int	strmem(char **tab, char const *s, char c, size_t words)
 		{
 			while (k < i)
 				free(tab[k++]);
-			return (-1);		
+			return (-1);
 		}
 		i++;
 	}
@@ -92,7 +104,9 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	else if (!*s)
 	{
-		tab = (char **)malloc(sizeof(char*));
+		tab = (char **)malloc(sizeof(char *));
+		if (tab == NULL)
+			return (NULL);
 		tab[0] = NULL;
 		return (tab);
 	}

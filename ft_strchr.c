@@ -1,19 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cmunoz-g <cmunoz-g@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 12:10:17 by cmunoz-g          #+#    #+#             */
+/*   Updated: 2024/01/09 12:48:17 by cmunoz-g         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char    *ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
-    char    ch;
+	char	ch;
 
-    ch = (char)c;
-    while (*str != '\0')
-    {
-        if (*str == ch)
-            return ((char *)str);
-        str++;
-    }
-    if (ch == '\0')
-        return ((char *)str);
-    return (0);
+	ch = (char)c;
+	while (*str != '\0')
+	{
+		if (*str == ch)
+			return ((char *)str);
+		str++;
+	}
+	if (ch == '\0')
+		return ((char *)str);
+	return (0);
 }
-
-// la funcion da segfault con NULL, al igual que la funcion original
