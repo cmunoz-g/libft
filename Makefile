@@ -1,7 +1,9 @@
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
-INCLUDE = libft.h
+INCLUDE = inc/
+OBJFOLDER = obj/
+FOLDER = srcs/
 SRCS = \
 		ft_atoi.c \
 		ft_bzero.c \
@@ -49,31 +51,32 @@ SRCSB = \
 		ft_lstnew.c \
 		ft_lstsize.c \
 
-OBJ = $(SRCS:.c=.o)
-OBJB = $(SRCSB:.c=.o)
+OBJS = $(SRCS:%.c=$(OBJFOLDER)%.o)
+OBJSB = $(SRCSB:%.c=$(OBJFOLDER)%.o)
 
-$(NAME): $(OBJ) $(INCLUDE)
-	ar -rcs $(NAME) $(OBJ)
-	ranlib $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o ${<:.c=.o}
+$(OBJFOLDER)%.o: $(FOLDER)%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $@
 
 all: $(NAME)
 
-bonus: $(OBJ) $(OBJB)
-	ar -rcs $(NAME) $(OBJ) $(OBJB)
-	ranlib $(NAME)
+$(NAME): $(OBJS) $(INCLUDE)
+	@ar -rcs $(NAME) $(OBJS)
+	@echo "Library $(NAME) created." 
 
 clean:
-	rm -rf $(OBJ) $(OBJB)
+	@rm -rf $(OBJFOLDER)
+	@echo "Object files cleaned."
+
+bonus: $(OBJS) $(OBJSB)
+	@ar -rcs $(NAME) $(OBJS) $(OBJSB)
+	@echo "Library $(NAME) with bonus files created."
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Library $(NAME) and object files cleaned."
 
 re: fclean all
 
-rebonus: fclean all bonus
-
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
 
